@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% block 'main' %}
+{% load static %}
+<div class="container">
+    {% for x in data %}
+    {% if forloop.counter == 1 %}
+    <div class="row mt-5">
+        <div class="col-12">
+            <h3>Hi {{x.uid.username}}, you have following items in your cart:</h3>
+        </div>
+    </div>
+    {% endif %}
+    {% endfor %}
+    {% for x in data %}
+    <div class="row mt-5">
+        <div class="col-6">
+            <img src="{{x.pid.pimage.url}}" height="500px" alt="Image_of_product">
+        </div>
+        <div class="col-6">
+            <h4><b>Product Name :</b>
+                <b id="name" name="nme">{{x.pid.name}}</b></h4><hr>
+            <h4><b>Product Price :</b>
+                <b id="price" name="prc">{{x.pid.Price}}</b></h4><hr>
+            <a href="/updateqty/0/{{x.id}}"><button class="btn btn-danger">-</button></a>
+            <input type="number" value="{{x.qty}}">
+            <a href="/updateqty/1/{{x.id}}"><button class="btn btn-success">+</button></a></p>
+            <a href="/remove/{{x.id}}"><button class="btn btn-danger">Remove</button></a>
+        </div>
+    </div>
+    {% endfor %}
+    {% if user.is_authenticated %}
+    <div class="row mt-5 ">
+        <div class="col-12">
+            <h4><b>Total number of products in cart : {{items}}</b></h4>
+            <h4><b>Total cart value : {{total}}</b></h4>
+            <a href="/placeorder"><button class="btn btn-danger">Place Order</button></a>
+        </div>
+    </div>
+    {% endif %}
+    {% if errmsg %}
+    <a href="/home" style="text-decoration: none;-webkit-text-fill-color: black;"><div class="alert alert-danger mt-5">{{errmsg}}</div></a>
+    {% endif %}
+    {% if errmsg1 %}
+    <a href="/userlogin" style="text-decoration: none;-webkit-text-fill-color: black;"><div class="alert alert-danger mt-5">{{errmsg1}}</div></a>
+    {% endif %}
+</div>
+{% endblock 'main' %}

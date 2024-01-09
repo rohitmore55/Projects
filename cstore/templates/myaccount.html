@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block 'main' %}
+{% load static %}
+<div class="container">
+    <div class="card-body">
+    <form id="accountform" method="post" action="/myaccount">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="registerName">Username</label>
+            <input type="text" class="form-control" name ="uname" id="registerName" placeholder="Enter your full name" value="{{uinfo.username}}">
+        </div><hr>
+        <div class="form-group">
+            <label for="registerEmail">Email address</label>
+            <input type="email" name="email" class="form-control" id="registerEmail" placeholder="Enter email" value="{{uinfo.email}}">
+        </div><hr>
+    </form>
+    </div>
+    <input type="submit" class="btn btn-danger" value="Save Changes"><br>
+</div>
+{% endblock 'main' %}

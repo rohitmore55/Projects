@@ -1,0 +1,69 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <title>Header</title>
+</head>
+<body>
+  <div class="container bg-dark mb-3 p-2">
+    <h1 align="center" ><a style="font-style: italic;font-family: cursive;-webkit-text-fill-color: burlywood;text-decoration: none;" href="/home">The Boys</a></h1>
+  </div>
+    <div class="container bg-light">
+      <ul class="nav nav-tabs">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/home">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/viewcart">Cart</a>
+        </li>
+        {% if user.is_authenticated %}
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Welcome,<strong>{{nme}}</strong></a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="/myaccount">My Account</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="/userlogout">Logout</a></li>
+            <li><hr class="dropdown-divider"></li>
+          </ul>
+        </li>
+        {% else %}
+        <li class="nav-item">
+          <a class="nav-link" href="/userlogin">Login</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/register">Register</a>
+        </li>
+        {% endif %}
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Price Filters</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="/byprice/0">Price Low to High</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="/byprice/1">Price High to Low</a></li>
+            <li><hr class="dropdown-divider"></li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Catagory Filters</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="/bycatagory/1">Shirts</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="/bycatagory/2">T-shirts</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="/bycatagory/3">Jeans</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="/bycatagory/4">Joggers</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="/bycatagory/5">Underwear</a></li>
+            <li><hr class="dropdown-divider"></li>
+          </ul>
+        </li>
+       </ul>
+    </div>
+</body>
+</html>

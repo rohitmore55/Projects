@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block 'main' %}
+{% load static %}
+<div class="container">
+    {% for x in data %}
+    {% if forloop.counter == 1 %}
+    <div class="row mt-5">
+        <div class="col-12">
+            <h3>Hi {{x.uid.username}}, your order contains the following items:</h3>
+        </div>
+    </div>
+    {% endif %}
+    {% endfor %}
+    {% for x in data %}
+    <div class="row mt-5">
+        <div class="col-6">
+            <img src="{{x.pid.pimage.url}}" height="500px" alt="Image_of_product">
+        </div>
+        <div class="col-6">
+            <h4><b>Product Name :</b>
+                <b id="name" name="nme">{{x.pid.name}}</b></h4><hr>
+            <h4><b>Product Price :</b>
+                <b id="price" name="prc">{{x.pid.Price}}</b></h4><hr>
+            <h4><b>Product Quantity :</b>
+                <b id="qty" name="qty">{{x.qty}}</b></h4><hr>
+            <a href="/removeorder/{{x.id}}"><button class="btn btn-danger">Remove from order</button></a>
+        </div>
+    </div>
+    {% endfor %}
+    {% if user.is_authenticated %}
+    <div class="row mt-5 ">
+        <div class="col-12">
+            <h4><b>Total number of products in order : {{items}}</b></h4>
+            <h4><b>Total order value : {{total}}</b></h4>
+        </div>
+    </div>
+    {% endif %}
+    {% if errmsg2 %}
+    <div class="alert alert-danger mt-5">{{errmsg2}}</div>
+    {% else %}
+    <div class="row mt-5"><a href="/makepayment" align="center"><button class="btn btn-danger">Make Payment</button></a></div>
+    {% endif %}
+</div>
+{% endblock 'main' %}

@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block 'main' %}
+{% load static %}
+<div class="container bg-light">
+    <div class="row mt-5">
+        {% for x in products %}
+        <div class="col-6">
+            <img src="{{x.pimage.url}}" height="500px" alt="Cloth_Image">
+        </div>
+        <div class="col-6">
+            <h4><b>Product Name:</b>
+                <b id="name" name="nme">{{x.name}}</b></h4><hr>
+            <h4><b>Product Details:</b>
+                <b id="details" name="det">{{x.details}}</b></h4><hr>
+            <h4><b>Product Price:</b>
+                <b id="price" name="prc">{{x.Price}}</b></h4><hr>
+            <h4><b>Product Catagory:</b>
+            {% if x.catagory == 1 %}
+            <b id id="cat" name="ctg">Shirt</b>
+            {% elif x.catagory == 2 %}
+            <b id id="cat" name="ctg">T-shirt</b>
+            {% elif x.catagory == 3 %}
+            <b id id="cat" name="ctg">Jeans</b>
+            {% elif x.catagory == 4 %}
+            <b id id="cat" name="ctg">Joggers</b>
+            {% else %}
+            <b id id="cat" name="ctg">Undergarments</b></h4>
+            {% endif %}
+            <div class="row mt-5">
+                <a href="/addtocart/{{x.id}}" class="btn btn-primary mb-3"><b>Add to cart</b></a>
+                <a href="/viewcart" class="btn btn-danger mb-3"><b>View cart</b></a>
+                <a href="/home" class="btn btn-dark mb-3"><b>Shop now</b></a>
+            </div>
+        </div>
+        {% endfor %}
+    {% if success %}
+        <div class="alert alert-success mt-5">{{success}}</div>
+    {% endif %}
+    {% if errmsg %}
+        <div class="alert alert-danger mt-5">{{errmsg}}</div>
+    {% endif %}
+    </div>
+</div>
+{% endblock 'main' %}

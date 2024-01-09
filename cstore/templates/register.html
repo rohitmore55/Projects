@@ -1,0 +1,63 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+    <title>Document</title>
+</head>
+<body>
+    <div class="col-12">
+        <a href="/home" style="text-decoration: none;">Home</a>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 mx-auto mt-4">
+                <div class="card">
+                    <div class="card-header">
+                        <h2 style="text-align: center;-webkit-text-fill-color:white;" class="bg-dark p-2">Register</h2>
+                    </div>
+                    {% if errmsg %}
+                    <div class="alert alert-danger">{{errmsg}}</div>
+                    {% endif %}
+                    {% if sucessmsg %}
+                    <div class="alert alert-success">{{sucessmsg}}</div>
+                    {% endif %}
+                    {% if msg %}
+                    <div class="alert alert-success">{{msg}}</div>
+                    {% endif %}
+                    <div class="card-body">
+                        <form id="registerForm" method="post" action="/register">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <label for="registerName">Username</label><br><br>
+                                <input type="text" class="form-control" name ="uname" id="registerName" placeholder="Enter your full name">
+                            </div><hr>
+                            <div class="form-group">
+                                <label for="registerEmail">Email address</label><br><br>
+                                <input type="email" name="email" class="form-control" id="registerEmail" placeholder="Enter email">
+                            </div><hr>
+                            <div class="form-group">
+                                <label for="registerPassword">Password</label><br><br>
+                                <input type="password" name="pwd" class="form-control" id="registerPassword" placeholder="Password">
+                            </div><hr>
+                            <div class="form-group">
+                                <label for="confirmregisterPassword">Confirm Password</label><br><br>
+                                <input type="password" name="cpwd" class="form-control" id="confirmregisterPassword" placeholder="Confirm Password">
+                            </div><hr>
+                            <div class="form-group">
+                            <input type="submit" class="btn btn-danger" value="Register"><br><br>
+                            Already a User?<a href="/userlogin" style="text-decoration: none;">Login</a>
+                        </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<script src="{% static 'assets/js/bootstrap.min.js' %}"></script>
+<script src="{% static 'assets/js/main.js' %}"></script>
+</body>
+</html>
