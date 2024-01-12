@@ -155,7 +155,7 @@ def register(request):
                 return render(request,'register.html',context)
             except Exception:
                 context['msg']="This user already exists.Try logging in!"
-                return redirect('/login')
+                return render(request,'register.html',context)
     else:
         return render(request,'register.html')
     
