@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate,login,logout
 from cstoreapp.models import product,cart,order
 import random
-"""import razorpay"""
+import razorpay
 
 # Create your views here.
 def home(request):
@@ -99,7 +99,7 @@ def removeorder(request,pid):
     o.delete()
     return redirect('/placeorder')
 
-"""def payment(request):
+def payment(request):
     orders=order.objects.filter(uid=request.user.id)
     s=0
     np=len(orders)
@@ -111,7 +111,7 @@ def removeorder(request,pid):
     payment = client.order.create(data=data)
     context={}
     context['data']=payment
-    return render(request,'payment.html',context)"""
+    return render(request,'payment.html',context)
 
 def userlogin(request):
     if request.method=="POST":

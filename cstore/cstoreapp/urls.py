@@ -20,6 +20,7 @@ urlpatterns = [
     path('bycatagory/<ctg>',views.bycatagory),
     path('about',views.about),
     path('contact',views.contact),
+    path('makepayment',views.payment),
 ]
 
 urlpatterns += static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
